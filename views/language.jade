@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	div(class='page-header')
+		h1= title
+	
+	if records < 100 && records > 0
+		div.alert.alert-success <strong>Right on!</strong> Showing #{records} results
+	else if records >= 100
+		div.alert.alert-info <strong>Easy there!</strong> There are over 100 results, so you might wanna be more specific
+	else
+		div.alert.alert-error <strong>Oh snap!</strong> I couldn't find any results for you
+			
+	ul
+		each item in items
+			li
+				a(href=item.url, target="_blank") #{item.name}
+				div(class='well')
+					if item.description.length
+						=JSON.stringify(item.description)
+					else
+						span.label.label-warning No description available
