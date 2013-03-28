@@ -6,7 +6,8 @@
 var express = require('express')
   , http = require('http')
   , path = require('path')
-  , GitHubApi = require("github");
+  , site = require('./routes/site')
+  , language = require('./routes/language');
 
 var app = express();
 
@@ -26,43 +27,15 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', function(req, res){
-	res.render('index', { title : 'Search repos by flavour'});
-});
+// General
+app.get('/', site.index);
 
-app.post('/language/', function(req,res){
-	var language = req.body.language;
-	var items = Array();
-	
-	var github = new GitHubApi({
-    	version: "3.0.0"
-  	});
-  	  	
-  	github.search.repos({
-  		keyword: language
-  	}, function(err, response){
-  		if(err){
-  			res.render('404',{ message: JSON.parse(err.message) });
-  		} else {
-  			var size,i;
-  			var data = [];
-  			size = response.repositories.length;
-  			
-  			for( i = 0; i < size; i++ ) {
-  				result = {};
-        		result.url = response.repositories[i].url;
-        		result.name = response.repositories[i].name;
-        		result.description = response.repositories[i].description; 
-        		data.push(result);       		
-      		}
-      		
-      		// send to the view
-      		res.render('language', { title: 'Results for ' + language, items: data, records: size});
-      	}
-  	
-  	});
-});
+// language
+app.all('/language/:language', language.view);
+app.post('/language/', language.view);
 
+
+// Setup server
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
