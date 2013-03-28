@@ -1,17 +1,14 @@
 extends layout
 
 block content
-		a(href='https://github.com/you', target="_blank", style='position: absolute; top: 0; right: 0; border: 0;')
-			img(src='https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png', alt='Fork me on GitHub')
-		
-		div(class='hero-unit', style='text-align:center')
-			h1= title
-			p Enter a language name or anything else you're interested in 
-				span.label.label-important don't be naughty!
-			p and I'll try to find you a repo for that on 
-				a(href='https://github.com') GitHub
-			hr
-			form(action='/language/',method='post')
-				div(class='input-append')
-					input(id='appendedInputButtons' ,type='text' ,name='language',placeholder="NodeJS", class='span6')
-					input(type='submit',value='show me them repos!',class='btn btn-primary')
+	div(class='hero-unit', style='text-align:center')
+		h1= title
+		p Enter a language name or anything else you're interested in. 
+			span.label.label-important Don't be naughty!
+		p and I'll try to find you a repo for that on 
+			a(href='https://github.com') GitHub
+		hr
+		form(action='/language/',method='post')
+			div(class='input-append')
+				input(id='appendedInputButtons' ,type='text' ,name='language',placeholder="NodeJS", class='span6')
+				input(type='submit',value='show me them repos!',class='btn btn-primary')
