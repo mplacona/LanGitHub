@@ -29,7 +29,7 @@ exports.view = function(req, res){
         		result.url = response.repositories[i].url;
         		result.name = response.repositories[i].name;
         		result.description = response.repositories[i].description; 
-        		data.push(result);       		
+        		data.push(result);
       		}
       		
       		// send to the view
