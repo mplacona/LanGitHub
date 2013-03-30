@@ -2,6 +2,9 @@
 ---
 Search for public repositories on github by language 
 
+## Demo
+[Langithub om Placona.co.uk](http://langithub.placona.co.uk/)
+
 ## Dependencies
 * [nodejs](http://nodejs.org)
 * [npm](https://npmjs.org/)
